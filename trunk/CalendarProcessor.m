@@ -330,7 +330,11 @@
         if ([[timeTracker objectForKey:@"Days"] count] <= [calendars count] + 1) {
             [[timeTracker objectForKey:@"Days"] addObject:[NSMutableArray array]];
         }
-        NSNumber    *worked = [NSNumber numberWithInt:total == 0.0 ? 0 : (total / [self workHoursInRangeFrom:dateStart to:dateEnd]) * 100];
+        
+        double      hours = [self workHoursInRangeFrom:dateStart to:dateEnd];
+        hours = hours == 0.0 ? total : hours;
+        
+        NSNumber    *worked = [NSNumber numberWithInt:total == 0.0 ? 0 : (total / hours) * 100];
         
         [[[timeTracker objectForKey:@"Days"] objectAtIndex:[calendars count] + 1]
          addObject:[NSArray arrayWithObjects:dateStr, worked, nil]];
