@@ -1,0 +1,22 @@
+#summary How to use iCalTaskTracker to visualize your time.
+#labels Featured
+
+To utilize iCalTimeTracker you simply need to create correctly named calendars and add events to them.
+
+iCalTimeTracker processes any calendar whose name ends with " hours" (not the leading space) (e.g. "My Project hours"). When presenting the information in iCalTimeTracker, the " hours" suffix is removed (e.g. "My Project").
+
+In addition to controlling the name, you can control the color of the corresponding row by changing it's color in iCal.
+
+Each event you add to a given calendar adds it's length to the hours represented in iCalTaskTracker. In addition to normal events throughout the day, you may also use all-day events to track your time. An all-day event, by default, represents 8 hours. You may adjust this by starting the name of the event with a number (e.g. "4: My Event") and that numeric value will be used for the length of the event.
+
+The result of an event that spans the midnight boundary is undefined. If your time block needs to span midnight, please break it up into two separate events (one ending at midnight and the next starting at midnight).
+
+Both local and remote calendars are supported, however delegated calendars (like additional calendars on a Google account) are not supported.
+
+Below is a screen shot of iCal and the resulting screen shot of the Daily Tab for reference.
+
+==iCal==
+[http://icaltimetracker.googlecode.com/svn/wiki/iCal.png]
+
+==Daily==
+[http://icaltimetracker.googlecode.com/svn/wiki/daily.png]
