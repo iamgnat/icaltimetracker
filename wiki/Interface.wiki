@@ -1,4 +1,5 @@
 #summary The User Interface
+#labels Featured
 
 = Introduction =
 
