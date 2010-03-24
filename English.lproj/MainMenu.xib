@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1310"/>
+			<integer value="894"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -376,7 +376,7 @@
 															<bool key="EncodedWithXMLCoder">YES</bool>
 															<object class="NSTableView" id="603573871">
 																<reference key="NSNextResponder" ref="619040196"/>
-																<int key="NSvFlags">256</int>
+																<int key="NSvFlags">4352</int>
 																<string key="NSFrameSize">{600, 405}</string>
 																<reference key="NSSuperview" ref="619040196"/>
 																<bool key="NSEnabled">YES</bool>
@@ -849,7 +849,6 @@
 														</object>
 														<string key="NSFrame">{{1, 17}, {600, 405}}</string>
 														<reference key="NSSuperview" ref="874705742"/>
-														<reference key="NSNextKeyView" ref="603573871"/>
 														<reference key="NSDocView" ref="603573871"/>
 														<reference key="NSBGColor" ref="381259550"/>
 														<int key="NScvFlags">4</int>
@@ -883,7 +882,6 @@
 														</object>
 														<string key="NSFrame">{{1, 0}, {600, 17}}</string>
 														<reference key="NSSuperview" ref="874705742"/>
-														<reference key="NSNextKeyView" ref="704911702"/>
 														<reference key="NSDocView" ref="704911702"/>
 														<reference key="NSBGColor" ref="381259550"/>
 														<int key="NScvFlags">4</int>
@@ -892,7 +890,6 @@
 												</object>
 												<string key="NSFrame">{{17, 58}, {602, 423}}</string>
 												<reference key="NSSuperview" ref="711510098"/>
-												<reference key="NSNextKeyView" ref="619040196"/>
 												<int key="NSsFlags">530</int>
 												<reference key="NSVScroller" ref="522627597"/>
 												<reference key="NSHScroller" ref="615604757"/>
@@ -913,7 +910,7 @@
 															<bool key="EncodedWithXMLCoder">YES</bool>
 															<object class="NSTableView" id="442714429">
 																<reference key="NSNextResponder" ref="503965486"/>
-																<int key="NSvFlags">256</int>
+																<int key="NSvFlags">4352</int>
 																<string key="NSFrameSize">{600, 40}</string>
 																<reference key="NSSuperview" ref="503965486"/>
 																<bool key="NSEnabled">YES</bool>
@@ -1333,7 +1330,6 @@
 														</object>
 														<string key="NSFrame">{{1, 1}, {600, 40}}</string>
 														<reference key="NSSuperview" ref="459072143"/>
-														<reference key="NSNextKeyView" ref="442714429"/>
 														<reference key="NSDocView" ref="442714429"/>
 														<reference key="NSBGColor" ref="381259550"/>
 														<int key="NScvFlags">4</int>
@@ -1361,7 +1357,6 @@
 												</object>
 												<string key="NSFrame">{{17, 17}, {602, 42}}</string>
 												<reference key="NSSuperview" ref="711510098"/>
-												<reference key="NSNextKeyView" ref="503965486"/>
 												<int key="NSsFlags">514</int>
 												<reference key="NSVScroller" ref="617178991"/>
 												<reference key="NSHScroller" ref="244951807"/>
@@ -1395,7 +1390,7 @@
 															<bool key="EncodedWithXMLCoder">YES</bool>
 															<object class="NSTableView" id="934814217">
 																<reference key="NSNextResponder" ref="1032599090"/>
-																<int key="NSvFlags">256</int>
+																<int key="NSvFlags">4352</int>
 																<string key="NSFrameSize">{600, 405}</string>
 																<reference key="NSSuperview" ref="1032599090"/>
 																<bool key="NSEnabled">YES</bool>
@@ -1817,7 +1812,7 @@
 															<bool key="EncodedWithXMLCoder">YES</bool>
 															<object class="NSTableView" id="768919171">
 																<reference key="NSNextResponder" ref="309795443"/>
-																<int key="NSvFlags">256</int>
+																<int key="NSvFlags">4352</int>
 																<string key="NSFrameSize">{600, 40}</string>
 																<reference key="NSSuperview" ref="309795443"/>
 																<bool key="NSEnabled">YES</bool>
@@ -2226,7 +2221,7 @@
 															<bool key="EncodedWithXMLCoder">YES</bool>
 															<object class="NSTableView" id="550242846">
 																<reference key="NSNextResponder" ref="29483817"/>
-																<int key="NSvFlags">256</int>
+																<int key="NSvFlags">4352</int>
 																<string key="NSFrameSize">{600, 405}</string>
 																<reference key="NSSuperview" ref="29483817"/>
 																<bool key="NSEnabled">YES</bool>
@@ -2646,7 +2641,7 @@
 															<bool key="EncodedWithXMLCoder">YES</bool>
 															<object class="NSTableView" id="207556793">
 																<reference key="NSNextResponder" ref="973976744"/>
-																<int key="NSvFlags">256</int>
+																<int key="NSvFlags">4352</int>
 																<string key="NSFrameSize">{600, 40}</string>
 																<reference key="NSSuperview" ref="973976744"/>
 																<bool key="NSEnabled">YES</bool>
@@ -3055,7 +3050,7 @@
 															<bool key="EncodedWithXMLCoder">YES</bool>
 															<object class="NSTableView" id="118478878">
 																<reference key="NSNextResponder" ref="666902499"/>
-																<int key="NSvFlags">256</int>
+																<int key="NSvFlags">4352</int>
 																<string key="NSFrameSize">{600, 405}</string>
 																<reference key="NSSuperview" ref="666902499"/>
 																<bool key="NSEnabled">YES</bool>
@@ -3475,7 +3470,7 @@
 															<bool key="EncodedWithXMLCoder">YES</bool>
 															<object class="NSTableView" id="744517179">
 																<reference key="NSNextResponder" ref="799600547"/>
-																<int key="NSvFlags">256</int>
+																<int key="NSvFlags">4352</int>
 																<string key="NSFrameSize">{600, 40}</string>
 																<reference key="NSSuperview" ref="799600547"/>
 																<bool key="NSEnabled">YES</bool>
@@ -3884,7 +3879,7 @@
 															<bool key="EncodedWithXMLCoder">YES</bool>
 															<object class="NSTableView" id="215887226">
 																<reference key="NSNextResponder" ref="850130915"/>
-																<int key="NSvFlags">256</int>
+																<int key="NSvFlags">4352</int>
 																<string key="NSFrameSize">{600, 426}</string>
 																<reference key="NSSuperview" ref="850130915"/>
 																<bool key="NSEnabled">YES</bool>
@@ -4085,7 +4080,7 @@
 															<bool key="EncodedWithXMLCoder">YES</bool>
 															<object class="NSTableView" id="1032891361">
 																<reference key="NSNextResponder" ref="217197027"/>
-																<int key="NSvFlags">256</int>
+																<int key="NSvFlags">4352</int>
 																<string key="NSFrameSize">{600, 19}</string>
 																<reference key="NSSuperview" ref="217197027"/>
 																<bool key="NSEnabled">YES</bool>
@@ -6878,7 +6873,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1356</int>
+			<int key="maxID">1370</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
