@@ -1,0 +1,21 @@
+#summary Release Notes
+
+<wiki:toc max_depth="3"/>
+
+----
+=Release 2010-03-20_21=
+==New Features==
+ * None
+
+==Bug Fixes==
+ * [http://code.google.com/p/icaltimetracker/issues/detail?id=6&can=1 6] Negative _Percentage Worked_ for weekends on Daily Tab.
+ * [http://code.google.com/p/icaltimetracker/issues/detail?id=7&can=1 7] Incorrect _Total_ and _Percentage Worked_ values for the 5th column on the Daily Tab.
+
+----
+=Release 2010-03-20=
+==New Features==
+ * Daily Tab
+ * Initial Open Source release
+
+==Bug Fixes==
+ * None
