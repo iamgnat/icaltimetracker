@@ -35,10 +35,12 @@
     [[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(readCalendars:)
                                     userInfo:nil repeats:NO] retain];
     
-    // TODO: Change the recurrance time to a configurable value.
-    timer = [[NSTimer scheduledTimerWithTimeInterval:(5.0 * 60.0) target:self
+    timer = [[NSTimer scheduledTimerWithTimeInterval:([ictt.prefs refreshInterval] * 1.0) target:self
                                             selector:@selector(readCalendars:) userInfo:nil
                                              repeats:YES] retain];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationObserver:)
+                                                 name:@"icttPrefsUpdateNotification" object:nil];
 }
 
 - (void) dealloc {
@@ -50,9 +52,27 @@
     [super dealloc];
 }
 
+- (void) notificationObserver: (NSNotification *) note {
+    if ([[note name] isEqualToString:@"icttPrefsUpdateNotification"]) {
+        NSLog(@"Got prefs update");
+        // Prefs have been saved, update as needed.
+        if ([timer timeInterval] != [ictt.prefs refreshInterval] * 1.0) {
+            NSLog(@"New time value of %i", [ictt.prefs refreshInterval]);
+            // New timer value. Kill the current one and restart.
+            [timer invalidate];
+            [timer release];
+            timer = [[NSTimer scheduledTimerWithTimeInterval:([ictt.prefs refreshInterval] * 1.0)
+                                                      target:self selector:@selector(readCalendars:)
+                                                    userInfo:nil repeats:YES] retain];
+        }
+    }
+}
+
 - (IBAction) readCalendars: (id) t {
     int     i = 0;
     int     j = 0;
+    
+    NSLog(@"reading calendars: %i", t == timer);
     
     // Get the calendar data.
     CalCalendarStore    *cs = [CalCalendarStore defaultCalendarStore];
@@ -409,6 +429,5 @@
         }
     }
 }
-
 
 @end
