@@ -41,6 +41,7 @@
 
 @synthesize reportsMenu;
 @synthesize calendars;
+@synthesize prefs;
 
 - (void) awakeFromNib {
     timeTrackerData = nil;

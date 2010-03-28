@@ -24,18 +24,33 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "iCalTimeTracker.h"
-#import <CalendarStore/CalendarStore.h>
+#import "Mail.h"
 
-@interface CalendarProcessor : NSObject {
-    IBOutlet iCalTimeTracker    *ictt;
+@interface Prefs : NSObject {
+    int                     lastUpdate;
+    NSString                *prefsFile;
     
-    NSTimer                     *timer;
+    // Refresh Interval info
+    IBOutlet NSTextField    *refreshIntervalTextField;
+    IBOutlet NSStepper      *refreshIntervalStepper;
 }
 
-- (IBAction) readCalendars: (id) t;
-- (double) workHoursInRangeFrom: (NSDate *) startDate to: (NSDate *) endDate;
-- (double) timeForEvent: (CalEvent *) event;
-- (void) notificationObserver: (NSNotification *) note;
+#pragma mark NSWindow Delegate (Prefs Window)
+- (void) windowDidBecomeKey:(NSNotification *) note;
+- (void) windowDidBecomeMain:(NSNotification *) note;
+- (void) windowDidChangeScreen:(NSNotification *) note;
+- (void) windowDidDeminiaturize:(NSNotification *) note;
+- (void) windowDidEndSheet:(NSNotification *) note;
+- (void) windowDidExpose:(NSNotification *) note;
+- (void) windowDidResignKey:(NSNotification *) note;
+- (void) windowDidResignMain:(NSNotification *) note;
+- (void) windowWillClose:(NSNotification *) note;
+- (void) windowWillMiniaturize:(NSNotification *) note;
+- (void) windowWillMove:(NSNotification *) note;
+- (NSSize) windowWillResize:(NSWindow *) window toSize:(NSSize) proposedFrameSize;
+
+#pragma mark Refresh Interval methods
+- (int) refreshInterval;
+
 
 @end
