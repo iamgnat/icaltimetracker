@@ -23,21 +23,26 @@
  *  THE SOFTWARE.
  */
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
+#import "pcre.h"
 
-#import "iCalTimeTracker.h"
-#import "RegExp.h"
-#import <CalendarStore/CalendarStore.h>
-
-@interface CalendarProcessor : NSObject {
-    IBOutlet iCalTimeTracker    *ictt;
-    
-    NSTimer                     *timer;
+@interface RegExp : NSObject {
+    pcre        *Regex;
+    NSString    *RegPat;
+    NSArray     *Matches;
+    int         SubstringCaptures;
+    int         Flags;
 }
 
-- (IBAction) readCalendars: (id) t;
-- (double) workHoursInRangeFrom: (NSDate *) startDate to: (NSDate *) endDate;
-- (double) timeForEvent: (CalEvent *) event;
-- (void) notificationObserver: (NSNotification *) note;
+- (id) init;
+- (id) initWithPattern: (NSString *) pattern;
+- (void) dealloc;
+
+- (void) setFlags: (int) flags;
+- (NSString *) pattern;
+- (void) setPattern: (NSString *) pattern;
+- (BOOL) matchesString: (NSString *) string withFlags: (int) flags;
+- (int) executeAgainstString: (NSString *) string withFlags: (int) flags;
+- (NSArray *) matchResults;
 
 @end

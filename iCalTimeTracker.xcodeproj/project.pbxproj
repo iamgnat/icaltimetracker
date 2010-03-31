@@ -18,6 +18,8 @@
 		C27763CA0ED214D600506D17 /* App.icns in Resources */ = {isa = PBXBuildFile; fileRef = C27763C90ED214D600506D17 /* App.icns */; };
 		C27F01EA0FA010830051D1E6 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27F01E90FA010830051D1E6 /* ScriptingBridge.framework */; };
 		C2CF7BB3115C5D6E008791A6 /* Prefs.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CF7BB2115C5D6E008791A6 /* Prefs.m */; };
+		C2CF7C771161991C008791A6 /* libpcre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CF7C761161991C008791A6 /* libpcre.a */; };
+		C2CF7CF11162C751008791A6 /* RegExp.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CF7CF01162C751008791A6 /* RegExp.m */; };
 		C2D5C49610E7CF6B008A0CC7 /* index.html in CopyFiles */ = {isa = PBXBuildFile; fileRef = C2D5C49510E7CF6B008A0CC7 /* index.html */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +58,10 @@
 		C27F01E90FA010830051D1E6 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
 		C2CF7BB1115C5D6E008791A6 /* Prefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefs.h; sourceTree = "<group>"; };
 		C2CF7BB2115C5D6E008791A6 /* Prefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Prefs.m; sourceTree = "<group>"; };
+		C2CF7C761161991C008791A6 /* libpcre.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpcre.a; sourceTree = "<group>"; };
+		C2CF7C7A11619936008791A6 /* pcre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcre.h; sourceTree = "<group>"; };
+		C2CF7CEF1162C751008791A6 /* RegExp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegExp.h; sourceTree = "<group>"; };
+		C2CF7CF01162C751008791A6 /* RegExp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegExp.m; sourceTree = "<group>"; };
 		C2D5C49510E7CF6B008A0CC7 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +73,7 @@
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				C25A9EDF0ECCD794007C3C7F /* CalendarStore.framework in Frameworks */,
 				C27F01EA0FA010830051D1E6 /* ScriptingBridge.framework in Frameworks */,
+				C2CF7C771161991C008791A6 /* libpcre.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +83,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C2CF7CEF1162C751008791A6 /* RegExp.h */,
+				C2CF7CF01162C751008791A6 /* RegExp.m */,
 				C25A9EC70ECCD2B4007C3C7F /* iCalTimeTracker.h */,
 				C25A9EC80ECCD2B4007C3C7F /* iCalTimeTracker.m */,
 				C25A9ECA0ECCD2D2007C3C7F /* TableDelegate.h */,
@@ -91,6 +100,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C2CF7C761161991C008791A6 /* libpcre.a */,
 				C27F01E90FA010830051D1E6 /* ScriptingBridge.framework */,
 				C25A9EDE0ECCD794007C3C7F /* CalendarStore.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
@@ -130,6 +140,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C2CF7C7A11619936008791A6 /* pcre.h */,
 				C2D5C49410E7CF48008A0CC7 /* Help */,
 				C27F01E80FA0100A0051D1E6 /* Mail.h */,
 				32CA4F630368D1EE00C91783 /* iCalTimeTracker_Prefix.pch */,
@@ -228,6 +239,7 @@
 				C25A9ECC0ECCD2D2007C3C7F /* TableDelegate.m in Sources */,
 				C25A9ECF0ECCD2E5007C3C7F /* CalendarProcessor.m in Sources */,
 				C2CF7BB3115C5D6E008791A6 /* Prefs.m in Sources */,
+				C2CF7CF11162C751008791A6 /* RegExp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +278,10 @@
 				GCC_PREFIX_HEADER = iCalTimeTracker_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = iCalTimeTracker;
 			};
 			name = Debug;
@@ -280,6 +296,10 @@
 				GCC_PREFIX_HEADER = iCalTimeTracker_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = iCalTimeTracker;
 			};
 			name = Release;
@@ -290,9 +310,13 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 			};
@@ -303,8 +327,12 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 			};
