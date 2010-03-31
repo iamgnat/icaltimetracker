@@ -44,6 +44,8 @@
     
     // Set the default values.
     NSNumber    *refreshInterval = [NSNumber numberWithInt:300];
+    NSNumber    *calendarPatternType = [NSNumber numberWithInt:1]; // 0 = 'starts with', 1 = 'ends with', 2 = 'regex'
+    NSString    *calendarPattern = @" Hours";
     
     if ([fm fileExistsAtPath:prefsFile]) {
         NSDictionary    *prefs = [NSDictionary dictionaryWithContentsOfFile:prefsFile];
@@ -57,6 +59,12 @@
                 if ([prefs objectForKey:@"refresh-interval"]) {
                     refreshInterval = [prefs objectForKey:@"refresh-interval"];
                 }
+                if ([prefs objectForKey:@"calendar-name-pattern-type"]) {
+                    calendarPatternType = [prefs objectForKey:@"calendar-name-pattern-type"];
+                }
+                if ([prefs objectForKey:@"calendar-name-pattern"]) {
+                    calendarPattern = [prefs objectForKey:@"calendar-name-pattern"];
+                }
             }
         }
     }
@@ -64,6 +72,8 @@
     // Update the UI bits
     [refreshIntervalStepper setIntValue:[refreshInterval intValue]];
     [refreshIntervalTextField setIntValue:[refreshInterval intValue]];
+    [calendarPatternPopUpButton selectItemAtIndex:[calendarPatternType intValue]];
+    [calendarPatternTextField setStringValue:calendarPattern];
     
     lastUpdate = 0;
     [self updatePrefs];
@@ -84,6 +94,9 @@
     
     [prefs setObject:[NSNumber numberWithFloat:1.0] forKey:@"prefs-version"];
     [prefs setObject:[NSNumber numberWithInt:[self refreshInterval]] forKey:@"refresh-interval"];
+    [prefs setObject:[calendarPatternTextField stringValue] forKey:@"calendar-name-pattern"];
+    [prefs setObject:[NSNumber numberWithInt:[calendarPatternPopUpButton indexOfSelectedItem]]
+              forKey:@"calendar-name-pattern-type"];
     
     if (![prefs writeToFile:prefsFile atomically:YES]) {
         NSRunAlertPanel(@"ERROR Saving Preferences", @"Unable to save your preference changes.",
@@ -145,9 +158,26 @@
     return(proposedFrameSize);
 }
 
-#pragma mark Refresh Interval methods
+#pragma mark Preference value methods
 - (int) refreshInterval {
     return([refreshIntervalStepper intValue]);
+}
+
+- (NSString *) calendarPattern {
+    switch ([calendarPatternPopUpButton indexOfSelectedItem]) {
+        case 0:
+            // Starts with
+            return([NSString stringWithFormat:@"^%@\\s*(.+?)\\s*$", [calendarPatternTextField stringValue]]);
+        case 1:
+            // Ends with
+            return([NSString stringWithFormat:@"^\\s*(.+?)\\s*%@$", [calendarPatternTextField stringValue]]);
+        default:
+            // Regex
+            return([calendarPatternTextField stringValue]);
+    }
+    
+    // Never should get here.
+    return(@"^$");
 }
 
 @end

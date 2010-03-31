@@ -72,8 +72,6 @@
     int     i = 0;
     int     j = 0;
     
-    NSLog(@"reading calendars: %i", t == timer);
-    
     // Get the calendar data.
     CalCalendarStore    *cs = [CalCalendarStore defaultCalendarStore];
     NSArray             *cals = [cs calendars];
@@ -89,15 +87,16 @@
                                                  @"Weeks", @"Days", nil]];
     NSSortDescriptor    *sort = nil;
     NSPredicate         *pred = nil;
+    RegExp              *re = [[[RegExp alloc] initWithPattern:[ictt.prefs calendarPattern]] autorelease];
     
     for (CalCalendar *cal in cals) {
-        if (![[cal title] hasSuffix:@" hours"]) {
+        if (![re matchesString:[cal title] withFlags:PCRE_NOTEMPTY]) {
             // Not a calendar we care about.
             continue;
         }
         
-        NSString    *title = [[cal title] stringByReplacingOccurrencesOfString:@" hours"
-                                                                    withString:@""];
+        // Take the first capture as our new name.
+        NSString    *title = [[[re matchResults] objectAtIndex:0] objectAtIndex:1];
         
         [calendars addObject:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:title, cal, nil]
                                                          forKeys:[NSArray arrayWithObjects:@"title", @"cal", nil]]];

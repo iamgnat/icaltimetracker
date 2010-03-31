@@ -33,6 +33,9 @@
     // Refresh Interval info
     IBOutlet NSTextField    *refreshIntervalTextField;
     IBOutlet NSStepper      *refreshIntervalStepper;
+    
+    IBOutlet NSTextField    *calendarPatternTextField;
+    IBOutlet NSPopUpButton  *calendarPatternPopUpButton;
 }
 
 #pragma mark NSWindow Delegate (Prefs Window)
@@ -49,8 +52,8 @@
 - (void) windowWillMove:(NSNotification *) note;
 - (NSSize) windowWillResize:(NSWindow *) window toSize:(NSSize) proposedFrameSize;
 
-#pragma mark Refresh Interval methods
+#pragma mark Preference value methods
 - (int) refreshInterval;
-
+- (NSString *) calendarPattern;
 
 @end
