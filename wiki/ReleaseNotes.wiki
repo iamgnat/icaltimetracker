@@ -3,6 +3,15 @@
 <wiki:toc max_depth="3"/>
 
 ----
+=Release 2010-04-10=
+==New Features==
+ * issue 1 Added preferences to control refresh frequency and calendar matching pattern.
+
+==Bug Fixes==
+ * issue 12 Eliminated unneeded focus ring from tables.
+ * issue 13 Fixed parsing of events so events that cross the midnight boundary between buckets properly break up their time between the crossed buckets.
+
+----
 =Release 2010-03-20_21=
 ==New Features==
  * None
