@@ -3,7 +3,7 @@
 <wiki:toc max_depth="3"/>
 
 ----
-=Release 2010-04-10=
+=Release [http://code.google.com/p/icaltimetracker/issues/list?can=1&q=label%3A2010-04-10 2010-04-10]=
 ==New Features==
  * issue 1 Added preferences to control refresh frequency and calendar matching pattern.
 
@@ -12,7 +12,7 @@
  * issue 13 Fixed parsing of events so events that cross the midnight boundary between buckets properly break up their time between the crossed buckets.
 
 ----
-=Release 2010-03-20_21=
+=Release [http://code.google.com/p/icaltimetracker/issues/list?can=1&q=label%3A2010-03-20_21 2010-03-20_21]=
 ==New Features==
  * None
 
@@ -21,7 +21,7 @@
  * issue 7 Incorrect _Total_ and _Percentage Worked_ values for the 5th column on the Daily Tab.
 
 ----
-=Release 2010-03-20=
+=Release [http://code.google.com/p/icaltimetracker/issues/list?can=1&q=label%3A2010-03-20 2010-03-20]=
 ==New Features==
  * Daily Tab
  * Initial Open Source release
