@@ -140,7 +140,7 @@
             pred = [CalCalendarStore eventPredicateWithStartDate:dateStart endDate:dateEnd
                                                        calendars:[NSArray arrayWithObject:cal]];
             for (CalEvent *event in [cs eventsWithPredicate:pred]) {
-                time += [self timeForEvent:event];
+                time += [self timeForEvent:event betweenStart:dateStart andEnd:dateEnd];
             }
             
             time = time / 60 / 60; // Convert to hours.
@@ -203,7 +203,7 @@
             pred = [CalCalendarStore eventPredicateWithStartDate:dateStart endDate:dateEnd
                                                        calendars:[NSArray arrayWithObject:cal]];
             for (CalEvent *event in [cs eventsWithPredicate:pred]) {
-                time += [self timeForEvent:event];
+                time += [self timeForEvent:event betweenStart:dateStart andEnd:dateEnd];
             }
             
             time = time / 60 / 60; // Convert to hours.
@@ -268,7 +268,7 @@
             pred = [CalCalendarStore eventPredicateWithStartDate:dateStart endDate:dateEnd
                                                        calendars:[NSArray arrayWithObject:cal]];
             for (CalEvent *event in [cs eventsWithPredicate:pred]) {
-                time += [self timeForEvent:event];
+                time += [self timeForEvent:event betweenStart:dateStart andEnd:dateEnd];
             }
             
             time = time / 60 / 60; // Convert to hours.
@@ -329,7 +329,7 @@
             pred = [CalCalendarStore eventPredicateWithStartDate:dateStart endDate:dateEnd
                                                        calendars:[NSArray arrayWithObject:cal]];
             for (CalEvent *event in [cs eventsWithPredicate:pred]) {
-                time += [self timeForEvent:event];
+                time += [self timeForEvent:event betweenStart:dateStart andEnd:dateEnd];
             }
             
             time = time / 60 / 60; // Convert to hours.
@@ -410,23 +410,35 @@
     return(weekDays * 8.0);
 }
 
-- (double) timeForEvent: (CalEvent *) event {
-    if (![event isAllDay]) {
-        // Not an all day item, so return it's time.
-        return([[event endDate] timeIntervalSinceDate:[event startDate]]);
-    } else {
-        double      title = [[event title] doubleValue];
-        
-        if (title == 0.0 || title == HUGE_VAL || title == -HUGE_VAL) {
-            // The title isn't supplying the time value.
-            //  Return 8 hours (in seconds).
-            return(28800.0);
+- (double) timeForEvent: (CalEvent *) event betweenStart: (NSDate *) start andEnd: (NSDate *) end {
+    NSDate  *eventStart = [event startDate];
+    NSDate  *eventEnd = [event endDate];
+    double  eventTime = 0.0;
+    
+    if ([eventStart isLessThan:end] && [eventEnd isGreaterThan:start]) {
+        // At least some of the event is in the range
+        if (![event isAllDay]) {
+            // Not an all day item, so use it's time.
+            // Change the start | end dates to deal with events that cross the day boundaries
+            if ([eventStart isLessThan:start]) eventStart = start;
+            if ([eventEnd isGreaterThan:end]) eventEnd = end;
+            eventTime = [eventEnd timeIntervalSinceDate:eventStart];
         } else {
-            // They've given the time as the title.
-            //  Multiply it out to seconds.
-            return(title * 3600);
+            double      title = [[event title] doubleValue];
+            
+            if (title == HUGE_VAL || title < 1.0 || title > 24.0) {
+                // The title isn't supplying a valid time value.
+                //  Return 8 hours (in seconds).
+                eventTime = 28800.0;
+            } else {
+                // They've given the time as the title.
+                //  Multiply it out to seconds.
+                eventTime = title * 3600;
+            }
         }
     }
+    
+    return(eventTime);
 }
 
 @end

@@ -37,7 +37,7 @@
 
 - (IBAction) readCalendars: (id) t;
 - (double) workHoursInRangeFrom: (NSDate *) startDate to: (NSDate *) endDate;
-- (double) timeForEvent: (CalEvent *) event;
+- (double) timeForEvent: (CalEvent *) event betweenStart: (NSDate *) start andEnd: (NSDate *) end;
 - (void) notificationObserver: (NSNotification *) note;
 
 @end
