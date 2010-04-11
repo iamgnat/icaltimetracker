@@ -30,6 +30,8 @@ The color of the rows in iCalTimeTracker's tables is determined by the color of 
 ===Data Refresh===
 By default your iCal data is re-read every five minutes. You can adjust this time in the _General_ tab of the iCalTimeTracker preferences. If you need to re-process the data before the next scheduled refresh, simply use the _Refresh Now_ button on the main window.
 
+*Note:* Current the UI says "minutes" and limits you from 60 to 1,440. The time is actually being processed in seconds (e.g. once a minute to once a day). Follow issue 14 to see when this is fixed.
+
 ===Adding Time===
 To add time, simply create an event in iCal that belongs to a monitored calendar. iCalTimeTracker can process both regular and all-day events.
 
