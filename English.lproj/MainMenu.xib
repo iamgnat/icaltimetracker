@@ -8,8 +8,8 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1372"/>
 			<integer value="57"/>
+			<integer value="1377"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4365,7 +4365,7 @@
 												<object class="NSTextFieldCell" key="NSCell" id="636379769">
 													<int key="NSCellFlags">-1804468671</int>
 													<int key="NSCellFlags2">71304192</int>
-													<integer value="300" key="NSContents"/>
+													<integer value="5" key="NSContents"/>
 													<reference key="NSSupport" ref="552746078"/>
 													<object class="NSNumberFormatter" key="NSFormatter" id="183828768">
 														<object class="NSMutableDictionary" key="NS.attributes">
@@ -4390,8 +4390,8 @@
 																<integer value="1040"/>
 																<real value="1.440000e+03" id="289301822"/>
 																<reference ref="12"/>
-																<real value="6.000000e+01" id="809257938"/>
-																<integer value="2"/>
+																<real value="1.000000e+00" id="854957408"/>
+																<reference ref="9"/>
 																<string>-#,###</string>
 																<string>0</string>
 																<integer value="0" id="8"/>
@@ -4414,7 +4414,7 @@
 															<string key="NSString">NaN</string>
 															<reference key="NSAttributes" ref="34349695"/>
 														</object>
-														<reference key="NS.min" ref="809257938"/>
+														<reference key="NS.min" ref="854957408"/>
 														<reference key="NS.max" ref="289301822"/>
 														<object class="NSDecimalNumberHandler" key="NS.rounding">
 															<int key="NS.roundingmode">2</int>
@@ -4444,8 +4444,8 @@
 													<int key="NSCellFlags">917024</int>
 													<int key="NSCellFlags2">0</int>
 													<reference key="NSControlView" ref="701497518"/>
-													<double key="NSValue">3.000000e+02</double>
-													<double key="NSMinValue">6.000000e+01</double>
+													<double key="NSValue">5.000000e+00</double>
+													<double key="NSMinValue">1.000000e+00</double>
 													<double key="NSMaxValue">1.440000e+03</double>
 													<double key="NSIncrement">1.000000e+00</double>
 													<bool key="NSAutorepeat">YES</bool>
@@ -7483,7 +7483,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1407</int>
+			<int key="maxID">1409</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

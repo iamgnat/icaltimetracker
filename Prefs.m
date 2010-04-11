@@ -43,7 +43,7 @@
                  stringByExpandingTildeInPath] retain];
     
     // Set the default values.
-    NSNumber    *refreshInterval = [NSNumber numberWithInt:300];
+    NSNumber    *refreshInterval = [NSNumber numberWithInt:5];
     NSNumber    *calendarPatternType = [NSNumber numberWithInt:1]; // 0 = 'starts with', 1 = 'ends with', 2 = 'regex'
     NSString    *calendarPattern = @" Hours";
     
@@ -55,9 +55,13 @@
         } else {
             float   version = [[prefs objectForKey:@"prefs-version"] floatValue];
             
-            if (version == 1.0) {
+            if (version <= 1.1) {
                 if ([prefs objectForKey:@"refresh-interval"]) {
                     refreshInterval = [prefs objectForKey:@"refresh-interval"];
+                    if (version == 1.0) {
+                        // Adjust seconds to minutes.
+                        refreshInterval = [NSNumber numberWithInt:(int) ([refreshInterval intValue] / 60)];
+                    }
                 }
                 if ([prefs objectForKey:@"calendar-name-pattern-type"]) {
                     calendarPatternType = [prefs objectForKey:@"calendar-name-pattern-type"];
@@ -92,7 +96,7 @@
     }
     lastUpdate = now;
     
-    [prefs setObject:[NSNumber numberWithFloat:1.0] forKey:@"prefs-version"];
+    [prefs setObject:[NSNumber numberWithFloat:1.1] forKey:@"prefs-version"];
     [prefs setObject:[NSNumber numberWithInt:[self refreshInterval]] forKey:@"refresh-interval"];
     [prefs setObject:[calendarPatternTextField stringValue] forKey:@"calendar-name-pattern"];
     [prefs setObject:[NSNumber numberWithInt:[calendarPatternPopUpButton indexOfSelectedItem]]
