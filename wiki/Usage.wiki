@@ -14,7 +14,7 @@ What iCal doesn't give you is a quick way to add up all the events to determine 
 ===Calendar Naming===
 To utilize iCalTimeTracker you simply need to create correctly named calendars and add events to them.
 
-By default iCalTimeTracker processes any calendar whose name ends with " hours" (note the leading space and case) (e.g. "My Project hours"). You can change the default naming pattern on the _General_ tab of the preferences. You have three options you can select from:
+By default iCalTimeTracker processes any calendar whose name ends with " Hours" (note the leading space and case) (e.g. "My Project Hours"). You can change the default naming pattern on the _General_ tab of the preferences. You have three options you can select from:
 
  * Starts with - Matches all calendars that start with this string.
  * Ends with - Matches all calenders that end with this string.
@@ -22,7 +22,7 @@ By default iCalTimeTracker processes any calendar whose name ends with " hours" 
 
 Technically speaking, the _Starts with_ and _Ends with_ options are regular expressions as well with the ^ and $ anchors explicitly added to them. The _REGEX_ option does not add the regex anchors to your pattern (so you can match anywhere in the calendar name).
 
-The string (pattern) that is matched to identify if a calendar should be used with be removed for display in iCalTimeTracker. For example, if you are using the default of "Ends with: ' hours'" then "My Project hours" will be displayed in iCalTimeTracker as "My Project".
+The string (pattern) that is matched to identify if a calendar should be used with be removed for display in iCalTimeTracker. For example, if you are using the default of "Ends with: ' Hours'" then "My Project Hours" will be displayed in iCalTimeTracker as "My Project".
 
 ===Row Coloring===
 The color of the rows in iCalTimeTracker's tables is determined by the color of the calender as it is configured in iCal.
