@@ -53,10 +53,8 @@
 
 - (void) notificationObserver: (NSNotification *) note {
     if ([[note name] isEqualToString:@"icttPrefsUpdateNotification"]) {
-        NSLog(@"Got prefs update");
         // Prefs have been saved, update as needed.
         if ([timer timeInterval] != [ictt.prefs refreshInterval] * 60.0) {
-            NSLog(@"New time value of %i", [ictt.prefs refreshInterval]);
             // New timer value. Kill the current one and restart.
             [timer invalidate];
             [timer release];
@@ -234,7 +232,6 @@
     for (i = 0 ; i < 4 ; i++) {
         NSCalendarDate      *date = [NSCalendarDate date];
         NSDateComponents    *comps = [NSDateComponents new];
-        //int                 days = [date dayOfWeek] + 1 + (i * 7); // "+ 1" (gets reversed below) = Saturday?
         int                 days = [date dayOfWeek] + (i * 7);
         
         date = [date dateByAddingYears:0 months:0 days:0 - days hours:0 minutes:0 seconds:0];
@@ -396,17 +393,14 @@
 - (double) workHoursInRangeFrom: (NSDate *) startDate to: (NSDate *) endDate {
     NSCalendarDate  *date = [startDate dateWithCalendarFormat:nil timeZone:nil];
     NSCalendarDate  *end = [endDate dateWithCalendarFormat:nil timeZone:nil];
-    double          weekDays = 0;
+    double          hours = 0.0;
     
     while ([date compare:end] != NSOrderedDescending) {
-        if ([date dayOfWeek] > 0 && [date dayOfWeek] < 6) {
-            weekDays++;
-        }
-        
+        hours += [ictt.prefs hoursForDay:[date dayOfWeek]];
         date = [date dateByAddingYears:0 months:0 days:1 hours:0 minutes:0 seconds:0];
     }
     
-    return(weekDays * 8.0);
+    return(hours);
 }
 
 - (double) timeForEvent: (CalEvent *) event betweenStart: (NSDate *) start andEnd: (NSDate *) end {

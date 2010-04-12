@@ -34,8 +34,19 @@
     IBOutlet NSTextField    *refreshIntervalTextField;
     IBOutlet NSStepper      *refreshIntervalStepper;
     
+    // Calendar selection
     IBOutlet NSTextField    *calendarPatternTextField;
     IBOutlet NSPopUpButton  *calendarPatternPopUpButton;
+    
+    // Work days/hours
+    IBOutlet NSPopUpButton  *startOfWeekPopUpButton;
+    IBOutlet NSTextField    *sundayTextField;
+    IBOutlet NSTextField    *mondayTextField;
+    IBOutlet NSTextField    *tuesdayTextField;
+    IBOutlet NSTextField    *wednesdayTextField;
+    IBOutlet NSTextField    *thursdayTextField;
+    IBOutlet NSTextField    *fridayTextField;
+    IBOutlet NSTextField    *saturdayTextField;
 }
 
 #pragma mark NSWindow Delegate (Prefs Window)
@@ -55,5 +66,7 @@
 #pragma mark Preference value methods
 - (int) refreshInterval;
 - (NSString *) calendarPattern;
+- (int) startOfWeek;
+- (float) hoursForDay:(int) day;
 
 @end
