@@ -46,6 +46,14 @@
     NSNumber    *refreshInterval = [NSNumber numberWithInt:5];
     NSNumber    *calendarPatternType = [NSNumber numberWithInt:1]; // 0 = 'starts with', 1 = 'ends with', 2 = 'regex'
     NSString    *calendarPattern = @" Hours";
+    NSNumber    *startOfWeek = [NSNumber numberWithInt:0];
+    NSNumber    *sunday = [NSNumber numberWithFloat:0.0];
+    NSNumber    *monday = [NSNumber numberWithFloat:8.0];
+    NSNumber    *tuesday = [NSNumber numberWithFloat:8.0];
+    NSNumber    *wednesday = [NSNumber numberWithFloat:8.0];
+    NSNumber    *thursday = [NSNumber numberWithFloat:8.0];
+    NSNumber    *friday = [NSNumber numberWithFloat:8.0];
+    NSNumber    *saturday = [NSNumber numberWithFloat:0.0];
     
     if ([fm fileExistsAtPath:prefsFile]) {
         NSDictionary    *prefs = [NSDictionary dictionaryWithContentsOfFile:prefsFile];
@@ -69,6 +77,19 @@
                 if ([prefs objectForKey:@"calendar-name-pattern"]) {
                     calendarPattern = [prefs objectForKey:@"calendar-name-pattern"];
                 }
+                if ([prefs objectForKey:@"week-info"]) {
+                    NSDictionary    *wi = [prefs objectForKey:@"week-info"];
+                    
+                    startOfWeek = [wi objectForKey:@"start-of-week"];
+                    sunday = [wi objectForKey:@"sunday-hours"];
+                    monday = [wi objectForKey:@"monday-hours"];
+                    tuesday = [wi objectForKey:@"tuesday-hours"];
+                    wednesday = [wi objectForKey:@"wednesday-hours"];
+                    thursday = [wi objectForKey:@"thursday-hours"];
+                    friday = [wi objectForKey:@"friday-hours"];
+                    saturday = [wi objectForKey:@"saturday-hours"];
+                }
+                
             }
         }
     }
@@ -78,6 +99,14 @@
     [refreshIntervalTextField setIntValue:[refreshInterval intValue]];
     [calendarPatternPopUpButton selectItemAtIndex:[calendarPatternType intValue]];
     [calendarPatternTextField setStringValue:calendarPattern];
+    [startOfWeekPopUpButton selectItemWithTag:[startOfWeek intValue]];
+    [sundayTextField setFloatValue:[sunday floatValue]];
+    [mondayTextField setFloatValue:[monday floatValue]];
+    [tuesdayTextField setFloatValue:[tuesday floatValue]];
+    [wednesdayTextField setFloatValue:[wednesday floatValue]];
+    [thursdayTextField setFloatValue:[thursday floatValue]];
+    [fridayTextField setFloatValue:[friday floatValue]];
+    [saturdayTextField setFloatValue:[saturday floatValue]];
     
     lastUpdate = 0;
     [self updatePrefs];
@@ -86,6 +115,7 @@
 - (void) updatePrefs {
     NSNotificationCenter    *nc = [NSNotificationCenter defaultCenter];
     NSMutableDictionary     *prefs = [NSMutableDictionary dictionary];
+    NSMutableDictionary     *wi = [NSMutableDictionary dictionary];
     int                     now = time(NULL);
     
     if (now < lastUpdate + 1) {
@@ -101,6 +131,16 @@
     [prefs setObject:[calendarPatternTextField stringValue] forKey:@"calendar-name-pattern"];
     [prefs setObject:[NSNumber numberWithInt:[calendarPatternPopUpButton indexOfSelectedItem]]
               forKey:@"calendar-name-pattern-type"];
+    
+    [wi setObject:[NSNumber numberWithInt:[self startOfWeek]] forKey:@"start-of-week"];
+    [wi setObject:[NSNumber numberWithFloat:[self hoursForDay:0]] forKey:@"sunday-hours"];
+    [wi setObject:[NSNumber numberWithFloat:[self hoursForDay:1]] forKey:@"monday-hours"];
+    [wi setObject:[NSNumber numberWithFloat:[self hoursForDay:2]] forKey:@"tuesday-hours"];
+    [wi setObject:[NSNumber numberWithFloat:[self hoursForDay:3]] forKey:@"wednesday-hours"];
+    [wi setObject:[NSNumber numberWithFloat:[self hoursForDay:4]] forKey:@"thursday-hours"];
+    [wi setObject:[NSNumber numberWithFloat:[self hoursForDay:5]] forKey:@"friday-hours"];
+    [wi setObject:[NSNumber numberWithFloat:[self hoursForDay:6]] forKey:@"saturday-hours"];
+    [prefs setObject:wi forKey:@"week-info"];
     
     if (![prefs writeToFile:prefsFile atomically:YES]) {
         NSRunAlertPanel(@"ERROR Saving Preferences", @"Unable to save your preference changes.",
@@ -183,5 +223,42 @@
     // Never should get here.
     return(@"^$");
 }
+
+- (int) startOfWeek {
+    return((int) [[startOfWeekPopUpButton selectedItem] tag]);
+}
+
+- (float) hoursForDay:(int) day {
+    NSTextField *hours;
+    
+    switch (day) {
+        case 0:
+            hours = sundayTextField;
+            break;
+        case 1:
+            hours = mondayTextField;
+            break;
+        case 2:
+            hours = tuesdayTextField;
+            break;
+        case 3:
+            hours = wednesdayTextField;
+            break;
+        case 4:
+            hours = thursdayTextField;
+            break;
+        case 5:
+            hours = fridayTextField;
+            break;
+        case 6:
+            hours = saturdayTextField;
+            break;
+        default:
+            return(0.0);
+    }
+    
+    return([hours floatValue]);
+}
+
 
 @end
