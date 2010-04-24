@@ -3,6 +3,17 @@
 <wiki:toc max_depth="3"/>
 
 ----
+=Release [http://code.google.com/p/icaltimetracker/issues/list?can=1&q=label%3A2010-04-24 2010-04-24]=
+==New Features==
+ * issue 8 Added ability to control work days and expected hours per day.
+ * issue 15 Made the main window re-sizable.
+ * issue 17 Added ability to change the start day of the week for the weekly view.
+
+==Bug Fixes==
+ * issue 14 Fixed UI display of refresh interval to be in sync with the actual logic.
+ * issue 18 Fixed persistence issue with preference storage.
+
+----
 =Release [http://code.google.com/p/icaltimetracker/issues/list?can=1&q=label%3A2010-04-10 2010-04-10]=
 ==New Features==
  * issue 1 Added preferences to control refresh frequency and calendar matching pattern.
