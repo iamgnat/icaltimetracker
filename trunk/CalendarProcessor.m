@@ -232,9 +232,11 @@
     for (i = 0 ; i < 4 ; i++) {
         NSCalendarDate      *date = [NSCalendarDate date];
         NSDateComponents    *comps = [NSDateComponents new];
-        int                 days = [date dayOfWeek] + (i * 7);
+        int                 weekStart = 0 - [date dayOfWeek] + [ictt.prefs startOfWeek];
+        int                 weekShift = 0 - (i * 7);
         
-        date = [date dateByAddingYears:0 months:0 days:0 - days hours:0 minutes:0 seconds:0];
+        date = [date dateByAddingYears:0 months:0 days:weekStart hours:0 minutes:0 seconds:0];
+        date = [date dateByAddingYears:0 months:0 days:weekShift hours:0 minutes:0 seconds:0];
         [comps setYear:[date yearOfCommonEra]]; [comps setMonth:[date monthOfYear]];
         [comps setDay:[date dayOfMonth]]; [comps setHour:0]; [comps setMinute:0]; [comps setSecond:0];
         
