@@ -3,7 +3,8 @@
 <wiki:toc max_depth="3"/>
 
 ----
-=Release [http://code.google.com/p/icaltimetracker/issues/list?can=1&q=label%3A2010-04-24 2010-04-24]=
+=Release 2010-04-24=
+[http://code.google.com/p/icaltimetracker/issues/list?can=1&q=label%3A2010-04-24 Ticket List]
 ==New Features==
  * issue 8 Added ability to control work days and expected hours per day.
  * issue 15 Made the main window re-sizable.
@@ -14,7 +15,8 @@
  * issue 18 Fixed persistence issue with preference storage.
 
 ----
-=Release [http://code.google.com/p/icaltimetracker/issues/list?can=1&q=label%3A2010-04-10 2010-04-10]=
+=Release 2010-04-10=
+[http://code.google.com/p/icaltimetracker/issues/list?can=1&q=label%3A2010-04-10 Ticket List]
 ==New Features==
  * issue 1 Added preferences to control refresh frequency and calendar matching pattern.
 
@@ -23,7 +25,8 @@
  * issue 13 Fixed parsing of events so events that cross the midnight boundary between buckets properly break up their time between the crossed buckets.
 
 ----
-=Release [http://code.google.com/p/icaltimetracker/issues/list?can=1&q=label%3A2010-03-20_21 2010-03-20_21]=
+=Release 2010-03-20_21=
+[http://code.google.com/p/icaltimetracker/issues/list?can=1&q=label%3A2010-03-20_21 Ticket List]
 ==New Features==
  * None
 
@@ -32,7 +35,8 @@
  * issue 7 Incorrect _Total_ and _Percentage Worked_ values for the 5th column on the Daily Tab.
 
 ----
-=Release [http://code.google.com/p/icaltimetracker/issues/list?can=1&q=label%3A2010-03-20 2010-03-20]=
+=Release 2010-03-20=
+[http://code.google.com/p/icaltimetracker/issues/list?can=1&q=label%3A2010-03-20 Ticket List]
 ==New Features==
  * Daily Tab
  * Initial Open Source release
