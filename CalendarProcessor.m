@@ -116,7 +116,6 @@
         [comps setYear:[date yearOfCommonEra]]; [comps setMonth:1]; [comps setDay:1];
         [comps setHour:0]; [comps setMinute:0]; [comps setSecond:0];
         
-        NSString    *dateStr = [date descriptionWithCalendarFormat:@"%Y-12-31"];
         NSDate      *dateStart = [[NSCalendar currentCalendar] dateFromComponents:comps];
         
         [comps setMonth:12]; [comps setDay:31];
@@ -127,6 +126,17 @@
         [comps release];
         
         double  total = 0;
+        NSString    *dateStr = nil;
+        
+        if ([ictt.prefs columnHeader] == 0) {
+            // Begining of period
+            dateStr = [dateStart descriptionWithCalendarFormat:[ictt.prefs dateFormat]
+                                                      timeZone:nil locale:nil];
+        } else {
+            // End of period
+            dateStr = [dateEnd descriptionWithCalendarFormat:[ictt.prefs dateFormat]
+                                                    timeZone:nil locale:nil];
+        }
         
         for (j = 0 ; j < [calendars count] ; j++) {
             NSDictionary    *calInfo = [calendars objectAtIndex:j];
@@ -184,12 +194,22 @@
         [comps setYear:[date yearOfCommonEra]]; [comps setMonth:[date monthOfYear]];
         [comps setDay:[date dayOfMonth]]; [comps setHour:23]; [comps setMinute:59]; [comps setSecond:59];
         
-        NSString    *dateStr = [date descriptionWithCalendarFormat:@"%Y-%m-%d"];
         NSDate      *dateEnd = [[NSCalendar currentCalendar] dateFromComponents:comps];
         
         [comps release];
         
         double      total = 0;
+        NSString    *dateStr = nil;
+        
+        if ([ictt.prefs columnHeader] == 0) {
+            // Begining of period
+            dateStr = [dateStart descriptionWithCalendarFormat:[ictt.prefs dateFormat]
+                                                      timeZone:nil locale:nil];
+        } else {
+            // End of period
+            dateStr = [dateEnd descriptionWithCalendarFormat:[ictt.prefs dateFormat]
+                                                    timeZone:nil locale:nil];
+        }
         
         for (j = 0 ; j < [calendars count] ; j++) {
             NSDictionary    *calInfo = [calendars objectAtIndex:j];
@@ -250,12 +270,22 @@
         [comps setYear:[date yearOfCommonEra]]; [comps setMonth:[date monthOfYear]];
         [comps setDay:[date dayOfMonth]]; [comps setHour:23]; [comps setMinute:59]; [comps setSecond:59];
         
-        NSString    *dateStr = [date descriptionWithCalendarFormat:@"%Y-%m-%d"];
         NSDate      *dateEnd = [[NSCalendar currentCalendar] dateFromComponents:comps];
         
         [comps release];
         
         double      total = 0;
+        NSString    *dateStr = nil;
+        
+        if ([ictt.prefs columnHeader] == 0) {
+            // Begining of period
+            dateStr = [dateStart descriptionWithCalendarFormat:[ictt.prefs dateFormat]
+                                                      timeZone:nil locale:nil];
+        } else {
+            // End of period
+            dateStr = [dateEnd descriptionWithCalendarFormat:[ictt.prefs dateFormat]
+                                                    timeZone:nil locale:nil];
+        }
         
         for (j = 0 ; j < [calendars count] ; j++) {
             NSDictionary    *calInfo = [calendars objectAtIndex:j];
@@ -311,7 +341,7 @@
         [comps setYear:[date yearOfCommonEra]]; [comps setMonth:[date monthOfYear]];
         [comps setDay:[date dayOfMonth]]; [comps setHour:23]; [comps setMinute:59]; [comps setSecond:59];
         
-        NSString    *dateStr = [date descriptionWithCalendarFormat:@"%Y-%m-%d"];
+        NSString    *dateStr = [date descriptionWithCalendarFormat:[ictt.prefs dateFormat]];
         NSDate      *dateEnd = [[NSCalendar currentCalendar] dateFromComponents:comps];
         
         [comps release];
