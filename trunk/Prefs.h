@@ -25,20 +25,19 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Mail.h"
+#import "RegExp.h"
 
 @interface Prefs : NSObject {
     int                     lastUpdate;
     NSString                *prefsFile;
     
-    // Refresh Interval info
+    // General Tab
     IBOutlet NSTextField    *refreshIntervalTextField;
     IBOutlet NSStepper      *refreshIntervalStepper;
-    
-    // Calendar selection
     IBOutlet NSTextField    *calendarPatternTextField;
     IBOutlet NSPopUpButton  *calendarPatternPopUpButton;
     
-    // Work days/hours
+    // Work Days Tab
     IBOutlet NSPopUpButton  *startOfWeekPopUpButton;
     IBOutlet NSTextField    *sundayTextField;
     IBOutlet NSTextField    *mondayTextField;
@@ -47,6 +46,8 @@
     IBOutlet NSTextField    *thursdayTextField;
     IBOutlet NSTextField    *fridayTextField;
     IBOutlet NSTextField    *saturdayTextField;
+    IBOutlet NSTextField    *dateFormatTextField;
+    IBOutlet NSPopUpButton  *columnHeaderPopUpButton;
 }
 
 #pragma mark NSWindow Delegate (Prefs Window)
@@ -63,10 +64,16 @@
 - (void) windowWillMove:(NSNotification *) note;
 - (NSSize) windowWillResize:(NSWindow *) window toSize:(NSSize) proposedFrameSize;
 
+#pragma mark NSTextField Delegate
+- (BOOL) control:(NSControl *) sender textShouldEndEditing:(NSText *) text;
+
 #pragma mark Preference value methods
 - (int) refreshInterval;
 - (NSString *) calendarPattern;
 - (int) startOfWeek;
 - (float) hoursForDay:(int) day;
+- (NSString *) dateFormat;
+- (int) columnHeader;
+- (BOOL) isDateFormatValid:(NSString *) string;
 
 @end

@@ -54,6 +54,8 @@
     NSNumber    *thursday = [NSNumber numberWithFloat:8.0];
     NSNumber    *friday = [NSNumber numberWithFloat:8.0];
     NSNumber    *saturday = [NSNumber numberWithFloat:0.0];
+    NSString    *dateFormat = @"%Y-%m-%d";
+    NSNumber    *columnHeader = [NSNumber numberWithInt:1];
     
     if ([fm fileExistsAtPath:prefsFile]) {
         NSDictionary    *prefs = [NSDictionary dictionaryWithContentsOfFile:prefsFile];
@@ -64,7 +66,7 @@
         } else {
             float   version = [[prefs objectForKey:@"prefs-version"] floatValue];
             
-            if (version < 1.2) {
+            if (version < 1.3) {
                 if ([prefs objectForKey:@"refresh-interval"]) {
                     refreshInterval = [prefs objectForKey:@"refresh-interval"];
                     if (version < 1.1) {
@@ -89,6 +91,11 @@
                     thursday = [wi objectForKey:@"thursday-hours"];
                     friday = [wi objectForKey:@"friday-hours"];
                     saturday = [wi objectForKey:@"saturday-hours"];
+                    
+                    if (version >= 1.2) {
+                        dateFormat = [wi objectForKey:@"date-format"];
+                        columnHeader = [wi objectForKey:@"column-header"];
+                    }
                 }
                 
             }
@@ -108,6 +115,8 @@
     [thursdayTextField setFloatValue:[thursday floatValue]];
     [fridayTextField setFloatValue:[friday floatValue]];
     [saturdayTextField setFloatValue:[saturday floatValue]];
+    [dateFormatTextField setStringValue:dateFormat];
+    [columnHeaderPopUpButton selectItemAtIndex:[columnHeader intValue]];
     
     lastUpdate = 0;
     [self updatePrefs];
@@ -127,7 +136,7 @@
     }
     lastUpdate = now;
     
-    [prefs setObject:[NSNumber numberWithFloat:1.1] forKey:@"prefs-version"];
+    [prefs setObject:[NSNumber numberWithFloat:1.2] forKey:@"prefs-version"];
     [prefs setObject:[NSNumber numberWithInt:[self refreshInterval]] forKey:@"refresh-interval"];
     [prefs setObject:[calendarPatternTextField stringValue] forKey:@"calendar-name-pattern"];
     [prefs setObject:[NSNumber numberWithInt:[calendarPatternPopUpButton indexOfSelectedItem]]
@@ -141,6 +150,11 @@
     [wi setObject:[NSNumber numberWithFloat:[self hoursForDay:4]] forKey:@"thursday-hours"];
     [wi setObject:[NSNumber numberWithFloat:[self hoursForDay:5]] forKey:@"friday-hours"];
     [wi setObject:[NSNumber numberWithFloat:[self hoursForDay:6]] forKey:@"saturday-hours"];
+    if (![self isDateFormatValid:[self dateFormat]]) {
+        [dateFormatTextField setStringValue:@"%Y-%m-%d"];
+    }
+    [wi setObject:[self dateFormat] forKey:@"date-format"];
+    [wi setObject:[NSNumber numberWithInt:[self columnHeader]] forKey:@"column-header"];
     [prefs setObject:wi forKey:@"week-info"];
     
     if (![prefs writeToFile:prefsFile atomically:YES]) {
@@ -203,6 +217,14 @@
     return(proposedFrameSize);
 }
 
+#pragma mark NSTextField Delegate
+- (BOOL) control:(NSControl *) sender textShouldEndEditing:(NSText *) text {
+    if (sender == dateFormatTextField) {
+        return([self isDateFormatValid:[sender stringValue]]);
+    }
+    return(YES);
+}
+
 #pragma mark Preference value methods
 - (int) refreshInterval {
     return([refreshIntervalStepper intValue]);
@@ -261,5 +283,50 @@
     return([hours floatValue]);
 }
 
+- (NSString *) dateFormat {
+    return([dateFormatTextField stringValue]);
+}
+
+- (int) columnHeader {
+    switch ([columnHeaderPopUpButton indexOfSelectedItem]) {
+        case 0:
+            // Show the start of the week.
+            return(0);
+        default:
+            // Show the end of the week.
+            return(1);
+    }
+    
+    // Never should get here.
+    return(1);
+}
+
+- (BOOL) isDateFormatValid:(NSString *) string {
+    // Validate date format. Limit to %Y, %y, %m, and %d.
+    RegExp  *re = [[[RegExp alloc] initWithPattern:@"%(.)"] autorelease];
+    if (![re matchesString:string withFlags:PCRE_NOTEMPTY]) {
+        NSLog(@"Your date format does not contain any tokens.");
+        return(NO);
+    }
+    
+    for (NSArray *match in [re matchResults]) {
+        char    t = [[match objectAtIndex:1] characterAtIndex:0];
+        
+        switch (t) {
+            case 'Y':
+            case 'y':
+            case 'm':
+            case 'd':
+                break;
+            default:
+                NSLog([NSString
+                       stringWithFormat:@"Invalid date format '%@'. %%%c is an unsupported token.",
+                       string, t]);
+                return(NO);
+        }
+    }
+    
+    return(YES);
+}
 
 @end
