@@ -57,16 +57,17 @@
     
     if ([fm fileExistsAtPath:prefsFile]) {
         NSDictionary    *prefs = [NSDictionary dictionaryWithContentsOfFile:prefsFile];
+        
         if (!prefs) {
             NSRunAlertPanel(@"ERROR Loading Preferences", @"Unable to load preferences.", @"OK",
                             nil, nil);
         } else {
             float   version = [[prefs objectForKey:@"prefs-version"] floatValue];
             
-            if (version <= 1.1) {
+            if (version < 1.2) {
                 if ([prefs objectForKey:@"refresh-interval"]) {
                     refreshInterval = [prefs objectForKey:@"refresh-interval"];
-                    if (version == 1.0) {
+                    if (version < 1.1) {
                         // Adjust seconds to minutes.
                         refreshInterval = [NSNumber numberWithInt:(int) ([refreshInterval intValue] / 60)];
                     }
