@@ -62,6 +62,9 @@
                                                       target:self selector:@selector(readCalendars:)
                                                     userInfo:nil repeats:YES] retain];
         }
+        
+        // Reload the UI
+        [self readCalendars:nil];
     }
 }
 
