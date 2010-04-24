@@ -13,3 +13,5 @@
  * Additionally it provides a _Percentage Worked_ summary for the period to show the percentage of time you've worked for that period (calculated as 8 hours a day for 5 days a week).
  * Supports non-local calendars (e.g. Google Calendar).
    * Delegate calendars are not currently supported.
+ * Allows you to specify expected hours each day of the week (used for calculating percentage worked).
+ * (For the weekly view) Lets you specify the day your weeks start (e.g. Mon - Sun vs Sun - Sat).
