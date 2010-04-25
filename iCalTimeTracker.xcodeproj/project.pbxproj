@@ -54,7 +54,6 @@
 		C25A9ECE0ECCD2E5007C3C7F /* CalendarProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarProcessor.m; sourceTree = "<group>"; };
 		C25A9EDE0ECCD794007C3C7F /* CalendarStore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CalendarStore.framework; path = /System/Library/Frameworks/CalendarStore.framework; sourceTree = "<absolute>"; };
 		C27763C90ED214D600506D17 /* App.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = App.icns; sourceTree = "<group>"; };
-		C27F01E80FA0100A0051D1E6 /* Mail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mail.h; sourceTree = "<group>"; };
 		C27F01E90FA010830051D1E6 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
 		C2CF7BB1115C5D6E008791A6 /* Prefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefs.h; sourceTree = "<group>"; };
 		C2CF7BB2115C5D6E008791A6 /* Prefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Prefs.m; sourceTree = "<group>"; };
@@ -142,7 +141,6 @@
 			children = (
 				C2CF7C7A11619936008791A6 /* pcre.h */,
 				C2D5C49410E7CF48008A0CC7 /* Help */,
-				C27F01E80FA0100A0051D1E6 /* Mail.h */,
 				32CA4F630368D1EE00C91783 /* iCalTimeTracker_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
