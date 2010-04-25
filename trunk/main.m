@@ -24,6 +24,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import "globals.h"
 
 int main(int argc, char *argv[])
 {

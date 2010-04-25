@@ -24,7 +24,6 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "Mail.h"
 #import "RegExp.h"
 
 @interface Prefs : NSObject {

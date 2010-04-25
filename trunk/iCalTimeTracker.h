@@ -24,7 +24,6 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "Mail.h"
 #import "Prefs.h"
 
 @interface iCalTimeTracker : NSObject {
@@ -44,9 +43,6 @@
     IBOutlet NSMenuItem     *reportsMenu;
     
     NSArray                 *calendars;
-    
-    IBOutlet NSPanel        *emailAddrPanel;
-    IBOutlet NSTextField    *emailAddr;
     
     IBOutlet Prefs          *prefs;
 }
@@ -68,7 +64,5 @@
 @property (readwrite, copy) NSArray *calendars;
 
 - (IBAction) launchTracker: (id) sender;
-- (IBAction) emailReport: (id) menu;
-- (IBAction) cancelEmail: (id) sender;
 
 @end
