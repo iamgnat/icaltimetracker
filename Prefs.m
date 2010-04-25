@@ -56,6 +56,7 @@
     NSNumber    *saturday = [NSNumber numberWithFloat:0.0];
     NSString    *dateFormat = @"%Y-%m-%d";
     NSNumber    *columnHeader = [NSNumber numberWithInt:1];
+    NSNumber    *alldayHours = [NSNumber numberWithFloat:8.0];
     
     if ([fm fileExistsAtPath:prefsFile]) {
         NSDictionary    *prefs = [NSDictionary dictionaryWithContentsOfFile:prefsFile];
@@ -80,6 +81,13 @@
                 if ([prefs objectForKey:@"calendar-name-pattern"]) {
                     calendarPattern = [prefs objectForKey:@"calendar-name-pattern"];
                 }
+                
+                if (version >= 1.2) {
+                    dateFormat = [prefs objectForKey:@"date-format"];
+                    columnHeader = [prefs objectForKey:@"column-header"];
+                    alldayHours = [prefs objectForKey:@"allday-hours"];
+                }
+                
                 if ([prefs objectForKey:@"week-info"]) {
                     NSDictionary    *wi = [prefs objectForKey:@"week-info"];
                     
@@ -91,11 +99,6 @@
                     thursday = [wi objectForKey:@"thursday-hours"];
                     friday = [wi objectForKey:@"friday-hours"];
                     saturday = [wi objectForKey:@"saturday-hours"];
-                    
-                    if (version >= 1.2) {
-                        dateFormat = [wi objectForKey:@"date-format"];
-                        columnHeader = [wi objectForKey:@"column-header"];
-                    }
                 }
                 
             }
@@ -117,6 +120,7 @@
     [saturdayTextField setFloatValue:[saturday floatValue]];
     [dateFormatTextField setStringValue:dateFormat];
     [columnHeaderPopUpButton selectItemAtIndex:[columnHeader intValue]];
+    [alldayHoursTextField setFloatValue:[alldayHours floatValue]];
     
     lastUpdate = 0;
     [self updatePrefs];
@@ -150,12 +154,14 @@
     [wi setObject:[NSNumber numberWithFloat:[self hoursForDay:4]] forKey:@"thursday-hours"];
     [wi setObject:[NSNumber numberWithFloat:[self hoursForDay:5]] forKey:@"friday-hours"];
     [wi setObject:[NSNumber numberWithFloat:[self hoursForDay:6]] forKey:@"saturday-hours"];
+    [prefs setObject:wi forKey:@"week-info"];
+    
     if (![self isDateFormatValid:[self dateFormat]]) {
         [dateFormatTextField setStringValue:@"%Y-%m-%d"];
     }
-    [wi setObject:[self dateFormat] forKey:@"date-format"];
-    [wi setObject:[NSNumber numberWithInt:[self columnHeader]] forKey:@"column-header"];
-    [prefs setObject:wi forKey:@"week-info"];
+    [prefs setObject:[self dateFormat] forKey:@"date-format"];
+    [prefs setObject:[NSNumber numberWithInt:[self columnHeader]] forKey:@"column-header"];
+    [prefs setObject:[NSNumber numberWithFloat:[self alldayHours]] forKey:@"allday-hours"];
     
     if (![prefs writeToFile:prefsFile atomically:YES]) {
         NSRunAlertPanel(@"ERROR Saving Preferences", @"Unable to save your preference changes.",
@@ -327,6 +333,10 @@
     }
     
     return(YES);
+}
+
+- (float) alldayHours {
+    return([alldayHoursTextField floatValue]);
 }
 
 @end

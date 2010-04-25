@@ -456,8 +456,7 @@
             
             if (title == HUGE_VAL || title < 1.0 || title > 24.0) {
                 // The title isn't supplying a valid time value.
-                //  Return 8 hours (in seconds).
-                eventTime = 28800.0;
+                eventTime = [ictt.prefs alldayHours] * 3600;
             } else {
                 // They've given the time as the title.
                 //  Multiply it out to seconds.

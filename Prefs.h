@@ -48,6 +48,7 @@
     IBOutlet NSTextField    *saturdayTextField;
     IBOutlet NSTextField    *dateFormatTextField;
     IBOutlet NSPopUpButton  *columnHeaderPopUpButton;
+    IBOutlet NSTextField    *alldayHoursTextField;
 }
 
 #pragma mark NSWindow Delegate (Prefs Window)
@@ -75,5 +76,6 @@
 - (NSString *) dateFormat;
 - (int) columnHeader;
 - (BOOL) isDateFormatValid:(NSString *) string;
+- (float) alldayHours;
 
 @end
