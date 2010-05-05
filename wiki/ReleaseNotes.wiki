@@ -3,6 +3,18 @@
 <wiki:toc max_depth="3"/>
 
 ----
+=Release 2010-05-05=
+[http://code.google.com/p/icaltimetracker/issues/list?can=1&q=label%3A2010-05-05 Ticket List]
+==New Features==
+ * issue 9 Added ability (Preferences) to change the current date for debugging purposes.
+ * issue 16 Added ability to change the date format for the column headers.
+ * issue 19 Added option to change column headers to show the start date of the period rather than the end.
+ * issue 20 Added option to change the default "all-day" event length from 8 hours to a custom value.
+
+==Bug Fixes==
+ * issue 21 Fixed bug introduced in 2010-04-24 where weekly view would sometimes show a future week.
+
+----
 =Release 2010-04-24=
 [http://code.google.com/p/icaltimetracker/issues/list?can=1&q=label%3A2010-04-24 Ticket List]
 ==New Features==
