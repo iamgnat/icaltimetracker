@@ -37,6 +37,8 @@
 #pragma mark private
 
 - (void) awakeFromNib {
+    startingUp = YES;
+    
     NSFileManager   *fm = [NSFileManager defaultManager];
     
     prefsFile = [[[NSString stringWithString:@"~/Library/Preferences/com.gmail.iamgnat.iCalTimeTracker.plist"]
@@ -121,9 +123,12 @@
     [dateFormatTextField setStringValue:dateFormat];
     [columnHeaderPopUpButton selectItemAtIndex:[columnHeader intValue]];
     [alldayHoursTextField setFloatValue:[alldayHours floatValue]];
+    [debugDatePicker setDateValue:[NSDate date]];
     
     lastUpdate = 0;
     [self updatePrefs];
+    startingUp = NO;
+    [debugForceDateButton setState:NSOffState];
 }
 
 - (void) updatePrefs {
@@ -174,56 +179,11 @@
 }
 
 #pragma mark NSWindow Delegate (Prefs Window)
-- (void) windowDidBecomeKey:(NSNotification *) note {
-    [self updatePrefs];
-}
-
-- (void) windowDidBecomeMain:(NSNotification *) note {
-    [self updatePrefs];
-}
-
-- (void) windowDidChangeScreen:(NSNotification *) note {
-    [self updatePrefs];
-}
-
-- (void) windowDidDeminiaturize:(NSNotification *) note {
-    [self updatePrefs];
-}
-
-- (void) windowDidEndSheet:(NSNotification *) note {
-    [self updatePrefs];
-}
-
-- (void) windowDidExpose:(NSNotification *) note {
-    [self updatePrefs];
-}
-
-- (void) windowDidResignKey:(NSNotification *) note {
-    [self updatePrefs];
-}
-
-- (void) windowDidResignMain:(NSNotification *) note {
-    [self updatePrefs];
-}
-
 - (void) windowWillClose:(NSNotification *) note {
     [self updatePrefs];
 }
 
-- (void) windowWillMiniaturize:(NSNotification *) note {
-    [self updatePrefs];
-}
-
-- (void) windowWillMove:(NSNotification *) note {
-    [self updatePrefs];
-}
-
-- (NSSize) windowWillResize:(NSWindow *) window toSize:(NSSize) proposedFrameSize {
-    [self updatePrefs];
-    return(proposedFrameSize);
-}
-
-#pragma mark NSTextField Delegate
+#pragma mark NSControl Delegates
 - (BOOL) control:(NSControl *) sender textShouldEndEditing:(NSText *) text {
     if (sender == dateFormatTextField) {
         return([self isDateFormatValid:[sender stringValue]]);
@@ -337,6 +297,10 @@
 
 - (float) alldayHours {
     return([alldayHoursTextField floatValue]);
+}
+
+- (NSDate *) debugDate {
+    return([debugForceDateButton state] == NSOnState ? [debugDatePicker dateValue] : [NSDate date]);
 }
 
 @end

@@ -35,11 +35,13 @@
     [[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(readCalendars:)
                                     userInfo:nil repeats:NO] retain];
     
-    timer = [[NSTimer scheduledTimerWithTimeInterval:([ictt.prefs refreshInterval] * 60.0) target:self
-                                            selector:@selector(readCalendars:) userInfo:nil
-                                             repeats:YES] retain];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationObserver:)
-                                                 name:@"icttPrefsUpdateNotification" object:nil];
+    timer = [[NSTimer scheduledTimerWithTimeInterval:([ictt.prefs refreshInterval] * 60.0)
+                                              target:self selector:@selector(readCalendars:)
+                                            userInfo:nil repeats:YES] retain];
+    
+    NSNotificationCenter    *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(notificationObserver:)
+               name:@"icttPrefsUpdateNotification" object:nil];
 }
 
 - (void) dealloc {
@@ -52,16 +54,14 @@
 }
 
 - (void) notificationObserver: (NSNotification *) note {
+    NSLog([note name]);
     if ([[note name] isEqualToString:@"icttPrefsUpdateNotification"]) {
-        // Prefs have been saved, update as needed.
-        if ([timer timeInterval] != [ictt.prefs refreshInterval] * 60.0) {
-            // New timer value. Kill the current one and restart.
-            [timer invalidate];
-            [timer release];
-            timer = [[NSTimer scheduledTimerWithTimeInterval:([ictt.prefs refreshInterval] * 60.0)
-                                                      target:self selector:@selector(readCalendars:)
-                                                    userInfo:nil repeats:YES] retain];
-        }
+        // Prefs have been updated.
+        [timer invalidate];
+        [timer release];
+        timer = [[NSTimer scheduledTimerWithTimeInterval:([ictt.prefs refreshInterval] * 60.0)
+                                                  target:self selector:@selector(readCalendars:)
+                                                userInfo:nil repeats:YES] retain];
         
         // Reload the UI
         [self readCalendars:nil];
@@ -109,7 +109,7 @@
     
     // 4 years
     for (i = 0 ; i < 4 ; i++) {
-        NSCalendarDate      *date = [NSCalendarDate date];
+        NSCalendarDate      *date = [[ictt.prefs debugDate] dateWithCalendarFormat:nil timeZone:nil];
         NSDateComponents    *comps = [NSDateComponents new];
         
         date = [date dateByAddingYears:0 - i months:0 days:0 hours:0 minutes:0 seconds:0];
@@ -180,7 +180,7 @@
     
     // 4 months
     for (i = 0 ; i < 4 ; i++) {
-        NSCalendarDate      *date = [NSCalendarDate date];
+        NSCalendarDate      *date = [[ictt.prefs debugDate] dateWithCalendarFormat:nil timeZone:nil];
         NSDateComponents    *comps = [NSDateComponents new];
         
         date = [date dateByAddingYears:0 months:0 - i days:0 hours:0 minutes:0 seconds:0];
@@ -251,9 +251,9 @@
     }
     
     // 4 weeks
-    //  Week starts on Sunday.
+    // Week starts on Sunday.
     for (i = 0 ; i < 4 ; i++) {
-        NSCalendarDate      *date = [NSCalendarDate date];
+        NSCalendarDate      *date = [[ictt.prefs debugDate] dateWithCalendarFormat:nil timeZone:nil];
         NSDateComponents    *comps = [NSDateComponents new];
         int                 weekStart = 0 - [date dayOfWeek] + [ictt.prefs startOfWeek];
         int                 weekShift = 0 - (i * 7);
@@ -327,7 +327,7 @@
         
     // 5 days
     for (i = 0 ; i < 5 ; i++) {
-        NSCalendarDate      *date = [NSCalendarDate date];
+        NSCalendarDate      *date = [[ictt.prefs debugDate] dateWithCalendarFormat:nil timeZone:nil];
         NSDateComponents    *comps = [NSDateComponents new];
         
         date = [date dateByAddingYears:0 months:0 days:0 - i hours:0 minutes:0 seconds:0];
