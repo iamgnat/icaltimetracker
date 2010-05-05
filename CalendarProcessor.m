@@ -54,7 +54,6 @@
 }
 
 - (void) notificationObserver: (NSNotification *) note {
-    NSLog([note name]);
     if ([[note name] isEqualToString:@"icttPrefsUpdateNotification"]) {
         // Prefs have been updated.
         [timer invalidate];
@@ -251,11 +250,10 @@
     }
     
     // 4 weeks
-    // Week starts on Sunday.
     for (i = 0 ; i < 4 ; i++) {
         NSCalendarDate      *date = [[ictt.prefs debugDate] dateWithCalendarFormat:nil timeZone:nil];
         NSDateComponents    *comps = [NSDateComponents new];
-        int                 weekStart = 0 - [date dayOfWeek] + [ictt.prefs startOfWeek];
+        int                 weekStart = 0 - ([date dayOfWeek] - [ictt.prefs startOfWeek] + ([date dayOfWeek] == [ictt.prefs startOfWeek] ? 0 : 7));
         int                 weekShift = 0 - (i * 7);
         
         date = [date dateByAddingYears:0 months:0 days:weekStart hours:0 minutes:0 seconds:0];
