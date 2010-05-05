@@ -45,7 +45,6 @@
 - (id) tableView: (NSTableView *) table objectValueForTableColumn: (NSTableColumn *) col
                row: (int) row {
     if (!ictt.calendars) {
-        NSLog(@"No calendars.");
         return(nil);
     }
     
