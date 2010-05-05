@@ -27,6 +27,7 @@
 #import "RegExp.h"
 
 @interface Prefs : NSObject {
+    BOOL                    startingUp;
     int                     lastUpdate;
     NSString                *prefsFile;
     
@@ -48,23 +49,16 @@
     IBOutlet NSTextField    *dateFormatTextField;
     IBOutlet NSPopUpButton  *columnHeaderPopUpButton;
     IBOutlet NSTextField    *alldayHoursTextField;
+    
+    // Debug Tab
+    IBOutlet NSDatePicker   *debugDatePicker;
+    IBOutlet NSButton       *debugForceDateButton;
 }
 
 #pragma mark NSWindow Delegate (Prefs Window)
-- (void) windowDidBecomeKey:(NSNotification *) note;
-- (void) windowDidBecomeMain:(NSNotification *) note;
-- (void) windowDidChangeScreen:(NSNotification *) note;
-- (void) windowDidDeminiaturize:(NSNotification *) note;
-- (void) windowDidEndSheet:(NSNotification *) note;
-- (void) windowDidExpose:(NSNotification *) note;
-- (void) windowDidResignKey:(NSNotification *) note;
-- (void) windowDidResignMain:(NSNotification *) note;
 - (void) windowWillClose:(NSNotification *) note;
-- (void) windowWillMiniaturize:(NSNotification *) note;
-- (void) windowWillMove:(NSNotification *) note;
-- (NSSize) windowWillResize:(NSWindow *) window toSize:(NSSize) proposedFrameSize;
 
-#pragma mark NSTextField Delegate
+#pragma mark NSControl Delegate
 - (BOOL) control:(NSControl *) sender textShouldEndEditing:(NSText *) text;
 
 #pragma mark Preference value methods
@@ -76,5 +70,6 @@
 - (int) columnHeader;
 - (BOOL) isDateFormatValid:(NSString *) string;
 - (float) alldayHours;
+- (NSDate *) debugDate;
 
 @end
